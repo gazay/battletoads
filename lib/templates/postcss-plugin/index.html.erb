@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="./style.out.css">
+    <style>table, tr, th, td { border: 1px solid black; }</style>
+  </head>
+  <body>
+    <h1><%= plugin.name %></h1>
+    <a href="javascript:history.back()">Back</a>
+    <table>
+      <tr>
+        <th>Input code</th>
+        <th>Output code</th>
+        <th>Postcss output</th>
+      </tr>
+      <%- plugin.examples.each do |ex| %>
+        <tr class='<%= ex.css_class %>'>
+          <td>
+            <%= ex.input %>
+          </td>
+          <td>
+            <%= ex.out %>
+          </td>
+          <td>
+            <%= ex.example_html %>
+          </td>
+        </tr>
+      <%- end %>
+    </table>
+  </body>
+</html>
