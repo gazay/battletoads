@@ -13,7 +13,7 @@ gulp.task('default', ['lint']);
 gulp.task('build', () => {
   return gulp.src(['**/*.input.css'])
     .pipe(postcss([
-      use({ modules: [<%= plugins %>]})
+      use({ modules: [<%= plugins.map(&:escaped_name).join(',') %>]})
     ]))
     .pipe(rename(path => {
       path.basename = path.basename.replace('.input', '');
@@ -22,19 +22,19 @@ gulp.task('build', () => {
     .pipe(gulp.dest('.'));
 });
 
-gulp.task('build-separate', [<%= plugins %>])
+gulp.task('build-separate', [<%= plugins.map(&:escaped_name).join(',') %>])
 
 // Build functions for each plugin independently
 
 <%- plugins.each do |plugin| %>
-  gulp.task(<%= plugin %>, () => {
-    return gulp.src('<%= plugin %>/style.input.css')
-      .pipe(postcss([ require('<%= plugin %>')() ]))
+  gulp.task(<%= plugin.escaped_name %>, () => {
+    return gulp.src('<%= plugin.name %>/style.input.css')
+      .pipe(postcss(<%= plugin.postcss_arguments %>))
       .pipe(rename(path => {
         path.basename = path.basename.replace('.input', '');
         path.extname = '.out.css';
       }))
-      .pipe(gulp.dest('./<%= plugin %>'));
+      .pipe(gulp.dest('./<%= plugin.name %>'));
   });
 
 <%- end %>
@@ -47,4 +47,3 @@ gulp.task('lint', () => {
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
 });
-
