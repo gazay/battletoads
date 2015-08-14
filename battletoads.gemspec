@@ -16,6 +16,6 @@ Gem::Specification.new do |s|
   s.files         = `git ls-files`.split("\n")
   s.require_paths = ['lib']
   s.required_ruby_version = '> 2.2.0'
-  s.add_dependency 'yaml'
+  s.add_dependency 'psych'
   s.add_development_dependency 'rspec', '>= 3.0'
 end
