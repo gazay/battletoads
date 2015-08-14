@@ -1,4 +1,4 @@
-@use <%= plugin.name %>;
+@use <%= plugin.escaped_name %>;
 
 <%- plugin.styles.each do |s| %>
   .<%= s.css_class %> {
