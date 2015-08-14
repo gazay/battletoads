@@ -1,0 +1,2 @@
+module Battletoads
+end
