@@ -30,15 +30,11 @@ module Battletoads
 
     def create_plugin(plugin_data)
       opts = {
-        styles:   plugin_data['styles'].map { |st| parse_style st },
         examples: plugin_data['examples'].map { |ex| parse_example ex },
         name:     plugin_data['name'],
         postcss_arguments: plugin_data['postcss_arguments']
       }
       Battletoads::Plugin.new(opts)
-    end
-
-    def parse_style(style_data)
     end
 
     def parse_example(example_data)
