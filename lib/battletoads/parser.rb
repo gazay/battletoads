@@ -14,6 +14,7 @@ module Battletoads
     def parse
       data = Psych.load_file(file_path)
       data['plugins'].each do |name, plugin_data|
+        binding.pry
         _data = plugin_data
         if plugin_data.is_a? String
           open(plugin_data, 'r') do |f|
@@ -30,14 +31,12 @@ module Battletoads
 
     def create_plugin(plugin_data)
       opts = {
-        examples: plugin_data['examples'].map { |ex| parse_example ex },
+        examples: plugin_data['examples'],
         name:     plugin_data['name'],
+        base:     plugin_data['base'],
         postcss_arguments: plugin_data['postcss_arguments']
       }
       Battletoads::Plugin.new(opts)
-    end
-
-    def parse_example(example_data)
     end
 
   end

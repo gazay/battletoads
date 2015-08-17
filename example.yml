@@ -1,0 +1,17 @@
+plugins:
+  postcss-color-alpha:
+    name: PostCSS Color Alpha
+    base_input:
+      html: "<div class='square #exampe_classes#'></div>"
+      css: ".square {\n
+               height: 20px;\n
+               width: 20px;\n
+               background: red;\n
+            }\n"
+    examples:
+      - { css_classes: 'is-black',
+          in: "background: black(.1);",
+          out: "background: rgba(0, 0, 0, 0.1);" }
+      - { css_classes: 'is-white',
+          in: "background: white(.2);",
+          out: "background: rgba(255, 255, 255, 0.2);" }

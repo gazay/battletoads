@@ -1,7 +1,7 @@
 module Battletoads
   class Example
 
-    attr_reader :css_class, :in, :out, :example_html
+    attr_reader :css_classes, :in, :out, :html
 
     def initialize(opts)
 
